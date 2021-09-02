@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include "element.h"
@@ -111,7 +112,7 @@ void Circuit::dfs(
          // Be ware that, we have to take the risk of
          // hash(a) + hash(b) == hash(c) + hash(d),
          // though I don't think it would happen so easily.
-         hashValue += hash(current_tree[i]->formula().c_str()) ;
+         hashValue += std::hash<std::string>{}(current_tree[i]->formula().c_str()) ;
 
          sign *= current_tree[i]->sign() ;
       }

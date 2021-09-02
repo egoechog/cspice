@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 
+#include "utils.h"
 #include "parser.h"
 #include "element.h"
 
@@ -18,6 +19,7 @@ extern int yyparse(void) ;
 extern void yyerror(const char *str) {
    //cerr << "error: " << str << endl ;
    extern int yylineno ;
+   cout << boost::stacktrace::stacktrace();
    stringstream msg ;
    msg << "At line " << yylineno << ", " << str << endl ;
    throw ParseError(msg.str());

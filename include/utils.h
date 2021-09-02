@@ -3,6 +3,10 @@
 #include<complex>
 #include<vector>
 #include<map>
+#include <cstdio>
+
+#define BOOST_STACKTRACE_USE_ADDR2LINE
+#include <boost/stacktrace.hpp>
 
 #include "element.h"
 #include "simulator.h"

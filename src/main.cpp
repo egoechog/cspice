@@ -30,9 +30,9 @@ int main (int argc, char const* argv[])
          simulator.simulate(parser.getConfig()[i]);
       }
    } catch (ParseError e) {
-      cerr << e.message() << endl;
+      cerr << "Parsing Error:" << e.message() << endl;
    } catch (SimulateException e) {
-      cerr << e.message() << endl ;
+      cerr << "Simulation Error:" <<  e.message() << endl ;
    }
 
    return 0;

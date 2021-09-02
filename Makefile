@@ -5,7 +5,9 @@ YACC_FLAG = -d -p parse
 
 CXX       = g++
 #CFLAGS    = -g -Iinclude
-CFLAGS	 = -O3 -Iinclude -Wall
+CFLAGS	 = -O3 -Iinclude -Wall -g -fno-pie -no-pie
+LDFLAGS  = 
+LIBS     = -ldl
 CSRCS     = $(wildcard src/*.cpp)
 CHDRS     = $(wildcard include/*.h)
 #COBJS     = $(addsuffix .o, $(basename $(CSRCS)))
@@ -28,7 +30,8 @@ src/parseYY.cpp src/parseYY.hpp: src/parser.y
 obj/parseYY.o : src/parser.cpp
 
 bin/cspice : $(COBJS)
-	$(CXX) $(CFLAGS) -o $@ $(COBJS)
+	# Object files have to be placed before libraries with the compilation command
+	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(COBJS) $(LIBS)
 
 obj/%.o : src/%.c
 	$(CXX) $(CFLAGS) -c -o $@ $<
